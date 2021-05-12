@@ -149,6 +149,7 @@ Improvements to the model would come in the form of more features in order for t
 ### Income vs Life Expectancy Scatter Plot
 
 [![Scatter Plot](https://img.youtube.com/vi/fafzJoBXtyE/0.jpg)](https://youtu.be/fafzJoBXtyE)
+[https://youtu.be/fafzJoBXtyE)](https://youtu.be/fafzJoBXtyE)
 
 Available as an interactive html file inside the visualisations folder
 

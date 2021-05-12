@@ -151,6 +151,8 @@ Improvements to the model would come in the form of more features in order for t
 
 [https://youtu.be/fafzJoBXtyE](https://youtu.be/fafzJoBXtyE)
 
+Available as an interactive html file inside the visualisations folder
+
 Income vs life expectancy for countries over the year span from 1990 to 2018 from Gapminder data.
 
 This visualisation answers question 1, does money buy a longer life? This was the behaviour from 1990 to 2018 on the countries available in our analysis. A scatter plot was used with bubbles sized by population and coloured by country. Income seemed to be most correlated with life expectancy in the analysis so it made sense to visualise that as shown above and explained by the below visualisation of a regression plot between the two variables showing a strong positive correlation. 

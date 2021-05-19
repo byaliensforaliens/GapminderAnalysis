@@ -32,7 +32,7 @@ class Visualisation():
            log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90])
         if save == True:
             fig.write_html(f"./visualisations/{col}_vs_life_expectancy.html")
-						fig.show()
+	    fig.show()
         else:
             fig.show()
 
@@ -84,9 +84,8 @@ class MachineLearning():
         Regression coefficients represent the mean change in the response variable
         for one unit of change in the predictor variable
         while holding other predictors in the model constant.\n""")
-        print(f"""Accuracy score for a Bayseian model is 
-									{reg.score(X_test, y_test):.5f},
-									for a Linear model is {reg2.score(X_test, y_test):.5f}""")
+        print(f"""Accuracy score for a Bayseian model is {reg.score(X_test, y_test):.5f},
+	          for a Linear model is {reg2.score(X_test, y_test):.5f}""")
 ```
 
 # Data Wrangling
@@ -154,7 +153,11 @@ Improvements to the model would come in the form of more features in order for t
 
 ### Income vs Life Expectancy Scatter Plot
 
+[![Scatter Plot](https://img.youtube.com/vi/fafzJoBXtyE/0.jpg)](https://youtu.be/fafzJoBXtyE)
+
 [https://youtu.be/fafzJoBXtyE](https://youtu.be/fafzJoBXtyE)
+
+Available as an interactive html file inside the visualisations folder
 
 Income vs life expectancy for countries over the year span from 1990 to 2018 from Gapminder data.
 

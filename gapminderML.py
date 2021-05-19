@@ -61,22 +61,38 @@ class Visualisation():
     def exploration(self,plot,x=None,y=None):
         sns.set_style("darkgrid")
         if plot == "regression":
-            sns.regplot(x=x,y=y,data=self)
+            sns.regplot(x=x,y=y,data=self).set_title("Regression Plot")
             plt.show()
         elif plot == "heatmap":
-            sns.heatmap(self.corr())
+            sns.heatmap(self.corr()).set_title("Correlation Heatmap")
             plt.show()
+        elif plot == "box":
+            sns.boxplot(x=self[x]).set_title("Box Plot of Variable")
+            plt.show()
+        elif plot == "corr":
+            g = sns.pairplot(self)
+            g.fig.suptitle("Correlation of variables")
+            plt.show()
+
+    def uni_variate(self):
+        sns.distplot(self.income).set_title("Distribution Plot of Income")
+        plt.show()
+        sns.distplot(self.population).set_title("Count Plot of Population")
+        plt.show()
+        sns.countplot(self.life_expectancy).set_title("Count Plot of Life Expectancy")
+        plt.show()
 
     # using an interactive scatter plot from the plotly library we can observe the behaviour of variables against life expectancy over time
     def animation(self,col,save):
         fig = px.scatter(self, x=col, y="life_expectancy", animation_frame="year", animation_group="country",
-           size="population", color="country", hover_name="country",
+           size="population", color="country", hover_name="country", title="Change Over Time",
            log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90])
         if save == True:
             fig.write_html(f"./visualisations/{col}_vs_life_expectancy.html")
             fig.show()
         else:
             fig.show()
+        
 
 class MachineLearning():
     # instantiating machine learning class to carry out predictions on life expectancy based on independent variables
@@ -115,6 +131,13 @@ class MachineLearning():
         while holding other predictors in the model constant.\n""")
         print(f"Accuracy score for a Bayseian model is {reg.score(X_test, y_test):.5f}, for a Linear model is {reg2.score(X_test, y_test):.5f}")
 
+def conclusion():
+    print(""" It can be concluded that money does, to an extent buy a longer life as we witness a positive correlation between the two factors over time.
+    Another interesting effect was that of population, which showed that the data collection process contained many outliers through our visualisation of a box plot.
+    We could use more features either through engineering or bringing in more data via the ETL pipeline we have built for this project.
+    It could also be interesting to run a KMeans Clustering algorithm on the dataset to group countries into separate categories
+    of life expectancy metrics.""")
+    
 # bulk of work carried out in this function to bring everything together
 def main():
     population = Gapminder("./gapminder_data/population_total.csv").clean(imputer=False)
@@ -123,17 +146,33 @@ def main():
     human_development = Gapminder("./gapminder_data/hdi_human_development_index.csv").clean(imputer=True)
     data = pd.DataFrame()
     data = Gapminder.merge(data,population,life_expectancy, income, human_development)
+    print("Analysing population data...")
     Gapminder.summary(population)
+    print("Analysing life expectancy data...")
     Gapminder.summary(life_expectancy)
+    print("Analysing income data...")
     Gapminder.summary(income)
+    print("Analysing HDI dataset...")
     Gapminder.summary(human_development)
-    Gapminder.summary(data)   
+    print("Analysing complete data...")
+    Gapminder.summary(data)
+    print("QUESTION - HOW DO THE VARIABLES CORRELATE WITH EACH OTHER?")
+    print("Assessing correlation of variables using correlation heatmap...")   
     Visualisation.exploration(data,plot="heatmap")
+    print("Assessing correlation of income against life expectancy using regression plot...")
     Visualisation.exploration(data,plot="regression",x="income",y="life_expectancy")
+    print("Assessing correlation of variables against each other using pair plots...")
+    Visualisation.exploration(data,plot="corr")
+    print("Asessing summary statistics on population variable using box plot...")
+    Visualisation.exploration(data,plot="box",x="population")
+    print("QUESTION - DOES INCOME BUY A LONGER LIFE?")
+    print("Animating change in life expectancy against income over time...")
     Visualisation.animation(data,"income",save=False)
-    Visualisation.animation(data,"hdi",save=True)
+    print("Running prediction algorithm and stats...")
     df = MachineLearning.encoding(data)
     MachineLearning.run(df)
+    print("Printing conclusion...\n")
+    conclusion()
     
 # runs program
 if __name__ == '__main__':

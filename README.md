@@ -4,9 +4,9 @@
 
 The Gapminder data which was analysed can be accessed here [https://www.gapminder.org/data/](https://www.gapminder.org/data/) Data was gathered for life expectancy, income, population and HDI (human development index) which looks at factors such as education and opportunity. The motivation behind the project was to assess the effect of different factors on life expectancy.
 
-# Approach
+# Questions
 
-### What's the effect of income on life expectancy. Or does money buy you more time on Earth?
+### Question 1 - What's the effect of income on life expectancy. Or does money buy you more time on Earth?
 
 This question is posed by most people. Will that new job, or that raise at work buy me happiness? We wanted to explore that in more detail based on socioeconomic data available for different countries. The variables gathered were income, population and the human development index of each country which is defined as the level of education and opportunity available to that individual in his or her respective country.
 
@@ -38,8 +38,13 @@ class Visualisation():
 
 ```
 
-### How do the independent variables affect our dependent variable?
+### Question 2 - How do the independent variables affect our dependent variable?
 
+#### Uni-variate analysis
+
+...
+
+#### Multi-variate analysis
 We wanted to explore the effect of our variables on life expectancy. This was carried out in the form of correlation analysis to see how they interacted with each other. The dataset was encoded and split into a training and testing data to see if we could predict the life expectancy of a small sample of the dataset (33%) and based on the small number of features used a model accuracy of almost 80% was achieved using linear regression methods.
 
 Regression coefficients represent the mean change in the response variable for one unit of change in the predictor variable while holding other predictors in the model constant.

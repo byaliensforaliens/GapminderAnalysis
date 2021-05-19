@@ -41,10 +41,12 @@ class Visualisation():
 ### Question 2 - How do the independent variables affect our dependent variable?
 
 #### Uni-variate analysis
-
-...
+Population variable was visualised in a box plot. Results showed large amount of outliers which indicates there were issues when collecting the data
+and issues of data quality.
 
 #### Multi-variate analysis
+Correlation was visualised for each plot against its pair using pair plots for understanding the effect of each vairable on the other.
+
 We wanted to explore the effect of our variables on life expectancy. This was carried out in the form of correlation analysis to see how they interacted with each other. The dataset was encoded and split into a training and testing data to see if we could predict the life expectancy of a small sample of the dataset (33%) and based on the small number of features used a model accuracy of almost 80% was achieved using linear regression methods.
 
 Regression coefficients represent the mean change in the response variable for one unit of change in the predictor variable while holding other predictors in the model constant.
